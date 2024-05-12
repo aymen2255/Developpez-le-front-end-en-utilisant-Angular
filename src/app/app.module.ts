@@ -8,10 +8,11 @@ import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { DetailComponent } from './pages/detail/detail.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, NotFoundComponent, NavBarComponent, DetailComponent],
-  imports: [BrowserModule, AppRoutingModule, HttpClientModule,NgxChartsModule],
+  imports: [BrowserModule, AppRoutingModule, HttpClientModule,NgxChartsModule,BrowserAnimationsModule],
   providers: [],
   bootstrap: [AppComponent],
 })
