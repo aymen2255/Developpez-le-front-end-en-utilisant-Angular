@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, throwError } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, filter, map, tap } from 'rxjs/operators';
 import { Olympic } from '../models/Olympic';
 import Swal from 'sweetalert2';
 
@@ -32,5 +32,26 @@ export class OlympicService {
 
   getOlympics() {
     return this.olympics$.asObservable();
+  }
+
+  public getOlympicById(id: number): Observable<Olympic> {
+
+    return this.olympics$.pipe(
+      filter((countries: Olympic[]) => countries.length > 0),
+      map((countries: Olympic[]) => {
+          const foundCountry = countries.find((foundCountry: Olympic) => foundCountry.id === id)
+
+          if (foundCountry === undefined) {
+            Swal.fire({
+              icon: 'error',
+              title: 'Oops...',
+              text: `Country not found`
+            });
+            throw new Error("Country not found");
+          }
+console.log('foundCountry',foundCountry);
+          return foundCountry;
+        }
+      ));
   }
 }

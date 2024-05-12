@@ -1,1 +1,32 @@
-<p>detail works!</p>
+<div class="row" *ngIf="countryName !== ''">
+    <div class="col-sm-12">
+      <div class="chart-container">
+        <div class="green-box col-sm-4 mb-2">
+          <p>Name of country: {{countryName}}</p>
+        </div>
+        <div class="stat">
+          <p class="whihe-box w-25">nombre de participations aux JO <strong
+              class="bold-text">{{participationJOCount}}</strong>
+          </p>
+          <p class="whihe-box w-25">nombre total de médailles obtenues <strong class="bold-text">{{medalsCount}}</strong>
+          </p>
+          <p class="whihe-box w-25">nombre total d'athlètes présentés aux JO <strong
+              class="bold-text">{{athleteCount}}</strong>
+          </p>
+        </div>
+  
+  
+  
+        <ngx-charts-line-chart (window:resize)="onResize($event)" [view]="view" [scheme]="colorScheme" [legend]="legend"
+          [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis"
+          [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="multi">
+        </ngx-charts-line-chart>
+  
+        <button class="btn btn-primary" routerLink="">Home</button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row" *ngIf="countryName === '' ">
+  acun résultat!
+  </div>
