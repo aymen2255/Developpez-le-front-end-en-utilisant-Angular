@@ -1,3 +1,25 @@
-<h2>Olympic games app</h2>
-<hr />
-<p>{{ (olympics$ | async)?.length }} data loaded</p>
+<div class="chart-container" *ngIf="joYears.length > 0">
+
+    <div class="green-box col-sm-6 mb-2">
+      <p>Medals per country</p>
+    </div>
+  
+    <div class="stat">
+      <p class="whihe-box w-50">Number of JOs <strong class="bold-text">{{ joYears.length }}</strong></p>
+      <p class="whihe-box w-50">Number of coutries <strong class="bold-text">{{ (olympics$ | async)?.length }}</strong>
+      </p>
+    </div>
+  
+    <ngx-charts-pie-chart
+      (window:resize)="onResize($event)"
+      [view]="view"
+      [results]="countries"
+      [labels]="showLabels">
+    </ngx-charts-pie-chart>
+  </div>
+  
+  <div class="chart-container" *ngIf="joYears.length === 0">
+  aucun résultat!
+  </div>
+  
+  
