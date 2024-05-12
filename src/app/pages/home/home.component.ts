@@ -60,7 +60,9 @@ export class HomeComponent implements OnInit, OnDestroy {
     this.view = [event.target.innerWidth / 1.3, 400];
   }
 
-
+  onChartElementClick(event: any) {
+    this.router.navigate(['detail/' + event.extra.id]);
+  }
 
 }
 

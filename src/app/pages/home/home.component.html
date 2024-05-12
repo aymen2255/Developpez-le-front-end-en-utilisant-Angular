@@ -14,7 +14,8 @@
       (window:resize)="onResize($event)"
       [view]="view"
       [results]="countries"
-      [labels]="showLabels">
+      [labels]="showLabels"
+      (select)="onChartElementClick($event)">
     </ngx-charts-pie-chart>
   </div>
   
