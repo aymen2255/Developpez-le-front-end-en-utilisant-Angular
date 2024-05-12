@@ -68,21 +68,26 @@ export class DetailComponent implements OnInit, OnDestroy {
     this.destroy$.next(true);
   }
 
-
+// obtenir les données statistiques d'un pays spécifique en fonction de son id
   getStatDataByCountry() {
     this.olympicService.getOlympicById(this.countyId).pipe(
+      //arrêter le subscribe lorsque le subject destroy$ émet une valeur
       takeUntil(this.destroy$)
     ).subscribe((country) => {
       if (country && country.participations) {
 
+        // Met à jour le nom du pays dans la propriété countryName
         this.countryName = country.country;
 
+        // Calcule le nombre de participations aux JO et le met à jour dans la propriété participationJOCount
         this.participationJOCount = country.participations.length;
 
+        // Calcule le nombre total de médailles remportées par le pays et le met à jour dans la propriété medalsCount
         this.medalsCount = country.participations.reduce((total: number, participation: Participation) => {
           return total + participation.medalsCount;
         }, 0);
 
+        // Calcule le nombre total d'athlètes ayant représenté le pays aux JO et le met à jour dans la propriété athleteCount
         this.athleteCount = country.participations.reduce((total: number, participation: Participation) => {
           return total + participation.athleteCount;
         }, 0);
@@ -91,9 +96,10 @@ export class DetailComponent implements OnInit, OnDestroy {
     });
   }
 
-
+// Transformer les données en un format adapté pour line charts
   transfomDataToLineChart() {
     this.olympicService.getOlympicById(this.countyId).pipe(
+      //arrêter le subscribe lorsque le subject destroy$ émet une valeur
       takeUntil(this.destroy$)
     ).subscribe((country) => {
       if (country && country.participations) {
@@ -102,16 +108,19 @@ export class DetailComponent implements OnInit, OnDestroy {
           return { name: participation.year.toString(), value: participation.medalsCount };
         });
 
+        // Crée un objet DetailChartCountry contenant le nom du pays et les données de participation transformées
         const detailChartCountry: DetailChartCountry = {
           name: country.country,
           series: this.series
         };
 
+        // Met à jour le tableau multi contenant les données du graphique line charts
         this.multi = [detailChartCountry];
       }
     })
   }
 
+  //Met à jour la taille de line charts en fonction de la largeur lors du redimensionnement de la fenêtre
   onResize(event: any) {
     this.view = [event.target.innerWidth / 1.3, 400];
   }

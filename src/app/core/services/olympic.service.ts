@@ -14,12 +14,13 @@ export class OlympicService {
 
   constructor(private http: HttpClient) {}
 
+  // Charger les données initiales des pays
   loadInitialData() {
-
     return this.http.get<Olympic[]>(this.olympicUrl).pipe(
       tap((value) => this.olympics$.next(value)),
       catchError((error, caught) => {
         this.olympics$.next([]);
+        // Affiche une alerte  avec SweetAlert2 pour informer l'utilisateur de l'erreur
         Swal.fire({
           icon: 'error',
           title: 'Oops...',
@@ -34,14 +35,15 @@ export class OlympicService {
     return this.olympics$.asObservable();
   }
 
+  // Récupère un Observable contenant la liste des pays
   public getOlympicById(id: number): Observable<Olympic> {
-
     return this.olympics$.pipe(
       filter((countries: Olympic[]) => countries.length > 0),
       map((countries: Olympic[]) => {
           const foundCountry = countries.find((foundCountry: Olympic) => foundCountry.id === id)
 
           if (foundCountry === undefined) {
+            // Affiche une alerte avec SweetAlert2 pour informer l'utilisateur
             Swal.fire({
               icon: 'error',
               title: 'Oops...',
@@ -49,7 +51,7 @@ export class OlympicService {
             });
             throw new Error("Country not found");
           }
-console.log('foundCountry',foundCountry);
+
           return foundCountry;
         }
       ));
