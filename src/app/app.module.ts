@@ -7,9 +7,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { DetailComponent } from './pages/detail/detail.component';
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, NotFoundComponent, NavBarComponent],
+  declarations: [AppComponent, HomeComponent, NotFoundComponent, NavBarComponent, DetailComponent],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule,NgxChartsModule],
   providers: [],
   bootstrap: [AppComponent],
