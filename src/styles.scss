@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .content {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .green-box {
+    background-color: #04838f;
+    color: white;
+    text-align: center;
+    border-radius: 10px;
+    width: 100%;
+    padding: 15px;
+  }
+  
+  .whihe-box {
+    border: 3px solid #04838f;
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+  .stat {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    gap: 1rem
+  }
+  .chart-container {
+    display: flex;
+    flex-flow: column nowrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 100%;
+  }
+  
