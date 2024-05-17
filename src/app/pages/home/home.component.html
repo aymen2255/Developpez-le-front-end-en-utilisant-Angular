@@ -16,11 +16,13 @@
       [results]="countries"
       [labels]="showLabels"
       (select)="onChartElementClick($event)">
+
+      
     </ngx-charts-pie-chart>
   </div>
   
   <div class="chart-container" *ngIf="joYears.length === 0">
-  aucun résultat!
+  No results!
   </div>
   
   

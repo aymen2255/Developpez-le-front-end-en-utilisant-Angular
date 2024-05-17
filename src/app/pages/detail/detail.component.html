@@ -5,12 +5,12 @@
           <p>Name of country: {{countryName}}</p>
         </div>
         <div class="stat">
-          <p class="whihe-box w-25">nombre de participations aux JO <strong
+          <p class="whihe-box w-25">Number of entries <strong
               class="bold-text">{{participationJOCount}}</strong>
           </p>
-          <p class="whihe-box w-25">nombre total de médailles obtenues <strong class="bold-text">{{medalsCount}}</strong>
+          <p class="whihe-box w-25">Total number medals <strong class="bold-text">{{medalsCount}}</strong>
           </p>
-          <p class="whihe-box w-25">nombre total d'athlètes présentés aux JO <strong
+          <p class="whihe-box w-25">Total number of athletes <strong
               class="bold-text">{{athleteCount}}</strong>
           </p>
         </div>
@@ -21,12 +21,17 @@
           [showXAxisLabel]="showXAxisLabel" [showYAxisLabel]="showYAxisLabel" [xAxis]="xAxis" [yAxis]="yAxis"
           [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [timeline]="timeline" [results]="multi">
         </ngx-charts-line-chart>
-  
-        <button class="btn btn-primary" routerLink="">Home</button>
+        
+       <a routerLink="">Go back</a>
       </div>
     </div>
   </div>
   
-  <div class="row" *ngIf="countryName === '' ">
-  acun résultat!
+  <div class="container d-flex justify-content-center align-items-center vh-100" *ngIf="countryName === '' ">   
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h2> No results!</h2>
+        <a routerLink="">Go back</a>
+      </div>
+    </div>
   </div>
