@@ -17,12 +17,26 @@
       [labels]="showLabels"
       (select)="onChartElementClick($event)">
 
+      <ng-template #tooltipTemplate let-model="model">
+        <div class="tooltip-container">
+          <div class="tooltip-label">{{model.name}}</div>
+          <div class="tooltip-value">
+            <i class="fa fa-medal"></i> {{model.value.toLocaleString()}}
+          </div>
+        </div>
+      </ng-template>
       
     </ngx-charts-pie-chart>
   </div>
   
-  <div class="chart-container" *ngIf="joYears.length === 0">
-  No results!
+
+
+  <div class="container d-flex justify-content-center align-items-center vh-100"  *ngIf="joYears.length === 0">   
+    <div class="row">
+      <div class="col-sm-12 text-center">
+        <h2> No results!</h2>       
+      </div>
+    </div>
   </div>
   
   
